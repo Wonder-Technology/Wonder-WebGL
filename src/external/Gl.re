@@ -358,7 +358,7 @@ external drawElements : (int, int, int, int) => unit = "";
 external drawArray : (int, int, int) => unit = "";
 
 [@bs.send.pipe: webgl1Context]
-external viewport : (float, float, float, float) => unit = "";
+external viewport : (int, int, int, int) => unit = "";
 
 [@bs.send.pipe: webgl1Context]
 external clearColor : (float, float, float, float) => unit = "";
