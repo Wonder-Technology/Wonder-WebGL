@@ -145,7 +145,19 @@ external getElementArrayBuffer : webgl1Context => int = "ELEMENT_ARRAY_BUFFER";
 
 [@bs.get] external getDynamicDraw : webgl1Context => int = "DYNAMIC_DRAW";
 
+[@bs.get] external getPoints : webgl1Context => int = "POINTS";
+
+[@bs.get] external getLines : webgl1Context => int = "LINES";
+
+[@bs.get] external getLineLoop : webgl1Context => int = "LINE_LOOP";
+
+[@bs.get] external getLineStrip : webgl1Context => int = "LINE_STRIP";
+
 [@bs.get] external getTriangles : webgl1Context => int = "TRIANGLES";
+
+[@bs.get] external getTriangleStrip : webgl1Context => int = "TRIANGLE_STRIP";
+
+[@bs.get] external getTriangleFan : webgl1Context => int = "TRIANGLE_FAN";
 
 [@bs.get] external getUnsignedInt : webgl1Context => int = "UNSIGNED_INT";
 
@@ -364,3 +376,64 @@ external disableVertexAttribArray : int => unit = "";
 [@bs.send.pipe: vaoExtension]
 external unbindVertexArrayOES : Js.nullable(buffer) => unit =
   "bindVertexArrayOES";
+
+[@bs.send.pipe: webgl1Context] external createFramebuffer : framebuffer = "";
+
+[@bs.send.pipe: webgl1Context] external createRenderbuffer : renderbuffer = "";
+
+[@bs.send.pipe: webgl1Context]
+external bindRenderbuffer : (int, renderbuffer) => unit = "";
+
+[@bs.send.pipe: webgl1Context]
+external bindFramebuffer : (int, framebuffer) => unit = "";
+
+[@bs.send.pipe: webgl1Context]
+external framebufferTexture2D : (int, int, int, texture, int) => unit = "";
+
+[@bs.send.pipe: webgl1Context]
+external framebufferRenderbuffer : (int, int, int, renderbuffer) => unit = "";
+
+[@bs.send.pipe: webgl1Context]
+external renderbufferStorage : (int, int, int, int) => unit = "";
+
+[@bs.get] external getFrameBuffer : webgl1Context => int = "FRAMEBUFFER";
+
+[@bs.get] external getRenderBuffer : webgl1Context => int = "RENDERBUFFER";
+
+[@bs.get]
+external getDepthComponent16 : webgl1Context => int = "DEPTH_COMPONENT16";
+
+[@bs.get]
+external getColorAttachment0 : webgl1Context => int = "COLOR_ATTACHMENT0";
+
+[@bs.get]
+external getDepthAttachment : webgl1Context => int = "DEPTH_ATTACHMENT";
+
+[@bs.get]
+external getFramebufferComplete : webgl1Context => int =
+  "FRAMEBUFFER_COMPLETE";
+
+[@bs.send.pipe: webgl1Context]
+external checkFramebufferStatus : int => int = "";
+
+[@bs.send.pipe: webgl1Context]
+external texImage2DWithNull :
+  (int, int, int, int, int, int, int, int, Js.Nullable.t(textureSource)) =>
+  unit =
+  "texImage2D";
+
+[@bs.send.pipe: webgl1Context]
+external readUnsignedBytePixels :
+  (int, int, int, int, int, int, Js.Typed_array.Uint8Array.t) => unit =
+  "readPixels";
+
+[@bs.send.pipe: webgl1Context]
+external scissor : (int, int, int, int) => unit = "";
+
+[@bs.get] external getScissorTest : webgl1Context => int = "SCISSOR_TEST";
+
+let getFramebufferStatus = [%bs.raw
+  status => {|
+return status.toString();
+    |}
+];

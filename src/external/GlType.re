@@ -22,6 +22,10 @@ type extension;
 
 type vaoExtension;
 
+type framebuffer;
+
+type renderbuffer;
+
 external imageElementToTextureSource :
   DomExtendType.imageElement => textureSource =
   "%identity";
