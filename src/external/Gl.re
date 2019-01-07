@@ -174,6 +174,8 @@ external getStencilBufferBit : webgl1Context => int = "STENCIL_BUFFER_BIT";
 
 [@bs.get] external getDepthTest : webgl1Context => int = "DEPTH_TEST";
 
+[@bs.get] external getStencilTest : webgl1Context => int = "STENCIL_TEST";
+
 [@bs.get] external getBlend : webgl1Context => int = "BLEND";
 
 [@bs.get] external getCullFace : webgl1Context => int = "CULL_FACE";
@@ -365,6 +367,10 @@ external clearColor : (float, float, float, float) => unit = "";
 
 [@bs.send.pipe: webgl1Context] external clear : int => unit = "";
 
+[@bs.send.pipe: webgl1Context] external stencilMask : hex => unit = "";
+
+[@bs.send.pipe: webgl1Context] external depthMask : bool => unit = "";
+
 [@bs.send.pipe: webgl1Context]
 external colorMask : (bool, bool, bool, bool) => unit = "";
 
@@ -437,3 +443,41 @@ let getFramebufferStatus = [%bs.raw
 return status.toString();
     |}
 ];
+
+[@bs.get] external getAlways : webgl1Context => int = "ALWAYS";
+
+[@bs.get] external getNever : webgl1Context => int = "NEVER";
+
+[@bs.get] external getLess : webgl1Context => int = "LESS";
+
+[@bs.get] external getEqual : webgl1Context => int = "EQUAL";
+
+[@bs.get] external getLEqual : webgl1Context => int = "LEQUAL";
+
+[@bs.get] external getGreater : webgl1Context => int = "GREATER";
+
+[@bs.get] external getNotEqual : webgl1Context => int = "NOTEQUAL";
+
+[@bs.get] external getGEqual : webgl1Context => int = "GEQUAL";
+
+[@bs.send.pipe: webgl1Context]
+external stencilFunc : (int, int, hex) => unit = "";
+
+[@bs.get] external getKeep : webgl1Context => int = "KEEP";
+
+[@bs.get] external getZero : webgl1Context => int = "ZERO";
+
+[@bs.get] external getReplace : webgl1Context => int = "REPLACE";
+
+[@bs.get] external getIncr : webgl1Context => int = "INCR";
+
+[@bs.get] external getIncrWrap : webgl1Context => int = "INCR_WRAP";
+
+[@bs.get] external getDecr : webgl1Context => int = "DECR";
+
+[@bs.get] external getDecrWrap : webgl1Context => int = "DECR_WRAP";
+
+[@bs.get] external getInvert : webgl1Context => int = "INVERT";
+
+[@bs.send.pipe: webgl1Context]
+external stencilOp : (int, int, int) => unit = "";

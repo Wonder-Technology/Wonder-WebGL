@@ -26,6 +26,8 @@ type framebuffer;
 
 type renderbuffer;
 
+type hex;
+
 external imageElementToTextureSource :
   DomExtendType.imageElement => textureSource =
   "%identity";
@@ -37,3 +39,5 @@ external parameterIntToBuffer : int => buffer = "%identity";
 
 external parameterIntToNullableTexture : int => Js.Nullable.t(texture) =
   "%identity";
+
+external intToHex : int => hex = "%identity";
